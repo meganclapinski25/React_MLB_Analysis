@@ -1,5 +1,5 @@
 import { useState } from "react";
-import styles from './Navbar.css';
+import styles from './Navbar.module.css';
 
 const pages = ['Standings']
 
