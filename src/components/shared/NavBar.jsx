@@ -1,14 +1,14 @@
 import { useState } from "react";
 import styles from './Navbar.module.css';
 
-const pages = ['Standings']
+const pages = ['Standings', 'Teams', 'Players', 'Head to Head Games']
 
 export default function Navbar ({currentPage, onNavigate}) {
     return (
         <nav className={styles.navbar}>
         <div className={styles.logo}>
           <span className={styles.logoIcon}>⚾</span>
-          <span className={styles.logoText}>MLB <strong>Analytics</strong></span>
+          <span className={styles.logoText}>MLB Analytics</span>
         </div>
 
         <ul className={styles.navLinks}>
