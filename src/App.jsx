@@ -1,34 +1,43 @@
-import { useState } from 'react'
-import Navbar from './components/shared/NavBar';
-import StandingsPage from './pages/StandingsPage';
-import TeamsPage from './pages/TeamsPage';
-import PlayersPage from './pages/PlayersPage';
-import HeadToHeadPage from './pages/HeadToHeadPage';
-
+import React from "react";
+import { useState } from 'react';
+import AddTodo from "./components/AddTodo";
+import TodoList from "./components/ToDoList";
+import FilterControls from "./components/FilterControls";
+import SortingControls from "./components/SortingControls"; 
+import NavBar from './components/NavBar';
+import EventsTab from './components/EventsTab';
 import './App.css'
 
 function App() {
-  const [currentPage, setCurrentPage] =useState('Standings');
-
-
-  const renderPage = () => {
-    switch (currentPage){
-      case ' Standings':return <StandingsPage/>
-      case ' Players':return <PlayersPage/>
-      case ' Teams':return <TeamsPage/>
-      case ' Head to Head':return <HeadToHeadPage/>
-      default: return null;
-    }
-  };
+  const [activeTab, setActiveTab] = useState('todos');
   
   return (
-    <>
-      <Navbar currentPage={currentPage} onNavigate={setCurrentPage} />
-      <main>
-        {renderPage()}
-      </main>
-    </>
-  )
+    <div className="app-container">
+      <h1>Student Dashboard</h1>
+      <NavBar activeTab={activeTab} setActiveTab={setActiveTab} />  {/* ← this was missing */}
+
+      {activeTab === 'todos' && (
+        <div className="tab-content">
+          <AddTodo />
+          <FilterControls />
+          <SortingControls />
+          <TodoList />
+        </div>
+      )}
+
+      {activeTab === 'calendar' && (
+        <div className="tab-content">
+          <EventsTab />
+        </div>
+      )}
+
+      {activeTab === 'finances' && (
+        <div className="tab-content">
+          <p>Finances coming soon</p>
+        </div>
+      )}
+    </div>
+  );
 }
 
-export default App
+export default App;
