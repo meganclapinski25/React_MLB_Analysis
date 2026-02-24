@@ -16,7 +16,7 @@ function App() {
       case 'Standings':return <StandingsPage/>
       case 'Players':return <PlayersPage/>
       case 'Teams':return <TeamsPage/>
-      case 'Head to Head':return <HeadToHeadPage/>
+      case 'Head to Head Games':return <HeadToHeadPage/>
       default: return null;
     }
   };

@@ -1,35 +1,37 @@
 @import "tailwindcss";
 
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
+@layer base {
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
 
-:root {
-  --navy: #002D72;
-  --red: #D50032;
-  --light-navy: #1a4a9e;
-  --dark: #0a0a0a;
-  --gray-dark: #1a1a2e;
-  --gray-mid: #2a2a4a;
-  --gray-light: #f4f4f8;
-  --white: #ffffff;
-  --text-muted: #9999bb;
-}
+  :root {
+    --navy: #002D72;
+    --red: #D50032;
+    --light-navy: #1a4a9e;
+    --dark: #0a0a0a;
+    --gray-dark: #1a1a2e;
+    --gray-mid: #2a2a4a;
+    --gray-light: #f4f4f8;
+    --white: #ffffff;
+    --text-muted: #9999bb;
+  }
 
-body {
-  font-family: 'Segoe UI', sans-serif;
-  background-color: var(--gray-dark);
-  color: var(--white);
-  min-height: 100vh;
-}
+  body {
+    font-family: 'Segoe UI', sans-serif;
+    background-color: var(--gray-dark);
+    color: var(--white);
+    min-height: 100vh;
+  }
 
-a {
-  text-decoration: none;
-  color: inherit;
-}
+  a {
+    text-decoration: none;
+    color: inherit;
+  }
 
-button {
-  cursor: pointer;
+  button {
+    cursor: pointer;
+  }
 }
