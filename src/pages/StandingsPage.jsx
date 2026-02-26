@@ -17,7 +17,7 @@ export default function StandingsPage(){
         wins:t.wins,
         losses:t.losses,
       }));
-      console.log(top5);
+      //console.log(top5);
       setTeams(top5);
     })
   }, [])
@@ -30,8 +30,13 @@ export default function StandingsPage(){
     <div>
       <h1>2025 MLB Standings</h1>
       <div>
-        <p>Check Console</p>
+        {teams.map(team => (
+          <div key = {team.name}>
+            <span>{team.name}</span>
+            <span>{team.wins} - {team.losses}</span>
+          </div>
+        ))}
       </div>
     </div>
-  )
+  );
 }
