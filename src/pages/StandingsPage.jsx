@@ -31,7 +31,7 @@ export default function StandingsPage(){
       <h1>2025 MLB Standings</h1>
       <div>
         {teams.map(team => (
-          <div key = {team.name}>
+          <div key = {team.name} className='flex justify-between items-center text-white '>
             <span>{team.name}</span>
             <span>{team.wins} - {team.losses}</span>
           </div>
