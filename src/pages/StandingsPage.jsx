@@ -11,14 +11,17 @@ export default function StandingsPage(){
 
   useEffect(()=>{
     fetchStandings(2025).then(data=>{
-      const first = data.records[0].teamRecords;
-      const top5 = first.slice(0,5).map(t=>({
-        name: t.team.name,
-        wins:t.wins,
-        losses:t.losses,
-      }));
+      const allTeams = data.records.flatMap(record =>
+        record.teamRecords.map(t=>({
+          name: t.team.name,
+          wins:t.wins,
+          losses:t.losses,
+        }))
+      );
+       
+     
       //console.log(top5);
-      setTeams(top5);
+      setTeams(allTeams);
     })
   }, [])
 
@@ -31,7 +34,7 @@ export default function StandingsPage(){
       <h1>2025 MLB Standings</h1>
       <div>
         {teams.map(team => (
-          <div key = {team.name} className='flex justify-between items-center text-white '>
+          <div key = {team.name} className='flex justify-between items-center text-white py-3 px-4 border-b border-gray-700 '>
             <span>{team.name}</span>
             <span>{team.wins} - {team.losses}</span>
           </div>
