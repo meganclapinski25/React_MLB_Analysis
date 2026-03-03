@@ -42,7 +42,7 @@ export default function HeadToHeadPage() {
         <h1 className="text-2xl font-bold text-white mb-2">Head to Head</h1>
         <p className="text-grey-400 mb-6">Is this team's record real or flulky *change this later**</p>
       
-        <div className='flex gap-6 mb-8'>
+        <div className='flex gap-6 mb-8 items-center'>
           <select defaultValue="" onChange={handleTeamA}>
             <option value="" disabled>Select Team A...</option>
             {allTeams.map(t => <option key={t.id} value={t.id}>{t.name}</option>)}
@@ -56,6 +56,22 @@ export default function HeadToHeadPage() {
           </select>
 
 
+        </div>
+        <div className="grid grid-cols-2 gap-6">
+          <div className="bg-gray-800 rounded-xl p-6">
+            <h2 className="text-xl font-bold text-white mb-4">Team A</h2>
+            <div className="bg-gray-700 rounded-lg p-4">
+              <p className="text-gray-400 text-xs mb-1">Actual Wins</p>
+              <p className="text-white text-2xl font-bold">--</p>
+            </div>
+          </div>
+          <div className="bg-gray-800 rounded-xl p-6">
+            <h2 className="text-xl font-bold text-white mb-4">Team B</h2>
+            <div className="bg-gray-700 rounded-lg p-4">
+              <p className="text-gray-400 text-xs mb-1">Actual Wins</p>
+              <p className="text-white text-2xl font-bold">--</p>
+            </div>
+          </div>
         </div>
       </div>
     );
