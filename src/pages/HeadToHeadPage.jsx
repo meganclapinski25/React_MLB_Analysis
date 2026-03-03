@@ -5,7 +5,7 @@ export default function HeadToHeadPage() {
 
   const [teamA, setTeamA] = useState(null);
   const [teamB, setTeamB] = useState(null);
-  const [allTeams, setAllTeams] =  useState(null);
+  const [allTeams, setAllTeams] =  useState([]);
 
 
   useEffect(() =>{
@@ -22,13 +22,13 @@ export default function HeadToHeadPage() {
   }, []);
     function handleTeamA(e){
       const selectedId = parseInt(e.target.value);
-      const selectedTeam = teams.find(t=>t.id === selectedId);
+      const selectedTeam = allTeams.find(t=>t.id === selectedId);
       setTeamA(selectedTeam);
     }
 
     function handleTeamB(e){
       const selectedId = parseInt(e.target.value);
-      const selectedTeam = teams.find(t=>t.id === selectedId);
+      const selectedTeam = allTeams.find(t=>t.id === selectedId);
       setTeamB(selectedTeam);
     }
 
@@ -45,14 +45,14 @@ export default function HeadToHeadPage() {
         <div className='flex gap-6 mb-8'>
           <select defaultValue="" onChange={handleTeamA}>
             <option value="" disabled>Select Team A...</option>
-            {teams.map(t => <option key={t.id} value={t.id}>{t.name}</option>)}
+            {allTeams.map(t => <option key={t.id} value={t.id}>{t.name}</option>)}
           </select>
 
           <span>vs</span>
 
           <select defaultValue="" onChange={handleTeamB}>
             <option value="" disabled>Select Team B...</option>
-            {teams.map(t => <option key={t.id} value={t.id}>{t.name}</option>)}
+            {allTeams.map(t => <option key={t.id} value={t.id}>{t.name}</option>)}
           </select>
 
 
