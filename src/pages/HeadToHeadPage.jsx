@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { fetchHeadtoHead } from '../services/mlbAPI';
+import { fetchStandings } from '../services/mlbAPI';
 
 export default function HeadToHeadPage() {
     return (
