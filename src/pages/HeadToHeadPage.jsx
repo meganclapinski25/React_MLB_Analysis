@@ -42,15 +42,15 @@ export default function HeadToHeadPage() {
         <h1 className="text-2xl font-bold text-white mb-2">Head to Head</h1>
         <p className="text-grey-400 mb-6">Is this team's record real or flulky *change this later**</p>
       
-        <div className='flex gap-6 mb-8 items-center'>
-          <select defaultValue="" onChange={handleTeamA}>
+        <div className='flex flex-col mb-8 items-center  '>
+          <select defaultValue="" onChange={handleTeamA} className='bg-gray-800 rounded-xl p-2'>
             <option value="" disabled>Select Team A...</option>
             {allTeams.map(t => <option key={t.id} value={t.id}>{t.name}</option>)}
           </select>
 
           <span>vs</span>
 
-          <select defaultValue="" onChange={handleTeamB}>
+          <select defaultValue="" onChange={handleTeamB} className='bg-gray-800 rounded-xl p-2'>
             <option value="" disabled>Select Team B...</option>
             {allTeams.map(t => <option key={t.id} value={t.id}>{t.name}</option>)}
           </select>
