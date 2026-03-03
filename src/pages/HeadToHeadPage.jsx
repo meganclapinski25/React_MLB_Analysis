@@ -1,11 +1,25 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { fetchStandings } from '../services/mlbAPI';
 
 export default function HeadToHeadPage() {
 
   const [teamA, setTeamA] = useState(null);
   const [teamB, setTeamB] = useState(null);
+  const [allTeams, setAllTeams] =  useState(null);
 
+
+  useEffect(() =>{
+    fetchStandings(2025).then(data =>{
+      const parsed = data.records.flatMap(record =>
+        record.teamRecords.map(t=>({
+          id:t.team.id,
+          name: t.team.name,
+          wins: t.wins,
+        }))
+      );
+      setAllTeams(parsed);
+    });
+  }, []);
     function handleTeamA(e){
       const selectedId = parseInt(e.target.value);
       const selectedTeam = teams.find(t=>t.id === selectedId);
