@@ -1,6 +1,6 @@
 import { useState } from 'react';
 
-
+import { useSearchPlayersQuery } from '../features/mlb/mlbApi';
 
 
 
@@ -13,6 +13,12 @@ export default function PlayersPage() {
       e.preventDefault();
       setSubmittedQuery(query);
     }
+
+    const { data:searchData, isLoading:searchLoading } = useSearchPlayersQuery(submittedQuery, {
+      skip: !submittedQuery,
+    });
+
+    const players = searchData?.people ?? [];
 
     return (
       <div className='flex flex-col items-center p-8'>
