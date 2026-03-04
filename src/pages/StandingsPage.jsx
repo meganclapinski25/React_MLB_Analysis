@@ -1,5 +1,5 @@
 import {useState, useEffect} from 'react';
-import {fetchStandings} from '../services/mlbAPI';
+import {fetchStandings} from '../store/mlbAPI';
 
 
 
