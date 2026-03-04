@@ -45,9 +45,13 @@ export default function PlayersPage() {
       {players.length > 0 && (
         <ul className="w-full max-w-md">
           {players.map(p => (
-            <li key={p.id} className="px-4 py-3 border-b border-gray-700 text-white">
-              {p.fullName} — {p.primaryPosition?.abbreviation}
-            </li>
+            <li
+            key={p.id}
+            onClick={() => setSelectedPlayerId(p.id)}
+            className={`px-4 py-3 border-b border-gray-700 text-white cursor-pointer hover:bg-gray-700 ${selectedPlayerId === p.id ? 'bg-gray-700' : ''}`}
+          >
+            {p.fullName} — {p.primaryPosition?.abbreviation}
+          </li>
           ))}
         </ul>
         )}
