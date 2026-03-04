@@ -1,25 +1,21 @@
-import { useEffect, useState } from 'react';
-import { fetchStandings } from '../services/mlbAPI';
+import { useState } from 'react';
+import { useGetStandingsQuery } from '../features/mlb/mlbApi';
 
 export default function HeadToHeadPage() {
 
   const [teamA, setTeamA] = useState(null);
   const [teamB, setTeamB] = useState(null);
-  const [allTeams, setAllTeams] =  useState([]);
-
-
-  useEffect(() =>{
-    fetchStandings(2025).then(data =>{
-      const parsed = data.records.flatMap(record =>
+  
+  const { data, isLoading } = useGetStandingsQuery(2025);
+ 
+      const allTeams = data.records.flatMap(record =>
         record.teamRecords.map(t=>({
           id:t.team.id,
           name: t.team.name,
           wins: t.wins,
         }))
       );
-      setAllTeams(parsed);
-    });
-  }, []);
+     
     function handleTeamA(e){
       const selectedId = parseInt(e.target.value);
       const selectedTeam = allTeams.find(t=>t.id === selectedId);
@@ -33,7 +29,7 @@ export default function HeadToHeadPage() {
     }
 
 
-
+    if (isLoading) return <p className="text-white p-8">Loading teams...</p>;
 
 
 

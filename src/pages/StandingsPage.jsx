@@ -1,17 +1,15 @@
-import {useState, useEffect} from 'react';
-import {fetchStandings} from '../store/mlbAPI';
-
+import { useGetStandingsQuery } from "../features/mlb/mlbApi";
 
 
 export default function StandingsPage(){
 
 
-  const [teams, setTeams] = useState([]);
-
-
-  useEffect(()=>{
-    fetchStandings(2025).then(data=>{
-      const allTeams = data.records.flatMap(record =>
+  
+  const { data, isLoading, isError } = useGetStandingsQuery(2025);
+      if (isLoading) return <p className="text-white p-8">Loading standings...</p>;
+      if (isError) return <p className="text-red-400 p-8">Failed to load standings.</p>;
+  
+      const teams = data.records.flatMap(record =>
         record.teamRecords.map(t=>({
           name: t.team.name,
           wins:t.wins,
@@ -20,11 +18,7 @@ export default function StandingsPage(){
       );
        
      
-      //console.log(top5);
-      setTeams(allTeams);
-    })
-  }, [])
-
+  
 
 
 
