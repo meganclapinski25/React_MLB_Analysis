@@ -7,7 +7,7 @@ import { useSearchPlayersQuery } from '../features/mlb/mlbApi';
 export default function PlayersPage() {
     const [query, setQuery] = useState('');
     const [submittedQuery, setSubmittedQuery] = useState('');
-
+    const [selectedPlayerId, setSelectedPlayerId] = useState(null);
 
     function handleSearch(e){
       e.preventDefault();
@@ -40,6 +40,17 @@ export default function PlayersPage() {
           Search
         </button>
       </form>
+
+      {searchLoading && <p className='"text-white'> Searching</p>}
+      {players.length > 0 && (
+        <ul className="w-full max-w-md">
+          {players.map(p => (
+            <li key={p.id} className="px-4 py-3 border-b border-gray-700 text-white">
+              {p.fullName} — {p.primaryPosition?.abbreviation}
+            </li>
+          ))}
+        </ul>
+        )}
       </div>
     )
   }
