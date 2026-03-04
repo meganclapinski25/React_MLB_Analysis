@@ -6,12 +6,12 @@ import { useState } from 'react';
 
 export default function PlayersPage() {
     const [query, setQuery] = useState('');
-    const [searched, setSearched] = useState(false);
+    const [submittedQuery, setSubmittedQuery] = useState('');
 
 
     function handleSearch(e){
       e.preventDefault();
-      setSearched(true);
+      setSubmittedQuery(query);
     }
 
     return (
