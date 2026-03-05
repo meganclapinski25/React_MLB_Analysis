@@ -68,20 +68,17 @@ export default function HeadToHeadPage() {
           <div className="mt-8 flex flex-col items-center">
             <h2 className="text-white text-xl font-bold mb-4">Win % Comparison</h2>
             <BarChart
-              style={{ width: '100%', maxWidth: '700px', aspectRatio: 1.618 }}
-              responsive
+              width={500}
+              height={300}
               data={[
                 { name: teamA.name, winPct: teamA.winPct },
                 { name: teamB.name, winPct: teamB.winPct },
               ]}
-              margin={{ top: 5, right: 0, left: 0, bottom: 5 }}
             >
-              <CartesianGrid strokeDasharray="3 3" />
-              <XAxis dataKey="name" stroke="#9CA3AF" />
-              <YAxis domain={[0, 1]} tickFormatter={v => `${(v * 100).toFixed(0)}%`} stroke="#9CA3AF" />
+              <XAxis dataKey="name" />
+              <YAxis domain={[0, 1]} tickFormatter={v => `${Math.round(v * 100)}%`} />
               <Tooltip formatter={v => `${(v * 100).toFixed(1)}%`} />
-              <Legend />
-              <Bar dataKey="winPct" fill="#3B82F6" radius={[10, 10, 0, 0]} />
+              <Bar dataKey="winPct" fill="#3B82F6" />
             </BarChart>
           </div>
         )}

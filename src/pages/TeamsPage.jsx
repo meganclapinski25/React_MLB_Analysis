@@ -34,7 +34,7 @@ export default function TeamsPage() {
         <TeamSelect
           teams={teams}
           onChange={e => {
-            const team = teams.find(t => t.id === parseInt(e.target.value));
+            const team = teams.find(t => t.name === e.target.value);
             setSelectedTeam(team);
           }}
           placeholder="Select a team..."
@@ -59,14 +59,14 @@ export default function TeamsPage() {
                 style={{ width: '100%', maxWidth: '1200px', aspectRatio: 1.618 }}
                 responsive
                 data={teams}
-                margin={{ top: 5, right: 0, left: 0, bottom: 5 }}
+
               >
                 <CartesianGrid strokeDasharray="3 3" stroke="#374151"/>
                 <XAxis dataKey="name" stroke="#9CA3AF" tick={false} />
                 <YAxis stroke="#9CA3AF"/>
                 <Tooltip
-                 contentStyle={{ backgroundColor: '#1F2937', border: 'none', color: '#fff' }}
-                 formatter={(value) => [`${value > 0 ? '+' : ''}${value}`, 'Win Diff']}
+                 contentStyle={{ backgroundColor: '#1F2937', color: '#fff' }}
+                 formatter={(value) => [value, 'Win Diff']}
                 />
                 <ReferenceLine y={0} stroke="#fff" strokeDasharray="3 3" />
                 
