@@ -65,7 +65,7 @@ export default function HeadToHeadPage() {
           </div>
         </div>
         {teamA && teamB && (
-          <div className="mt-8">
+          <div className="mt-8 flex flex-col items-center">
             <h2 className="text-white text-xl font-bold mb-4">Win % Comparison</h2>
             <BarChart
               style={{ width: '100%', maxWidth: '700px', aspectRatio: 1.618 }}
