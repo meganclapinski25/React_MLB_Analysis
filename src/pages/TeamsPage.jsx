@@ -34,9 +34,9 @@ export default function TeamsPage() {
           onChange={e => setSelectedTeam(e.target.value)}
           placeholder="Select a team..."
         />
-        <div>
-          <h2>
-            <p>
+        <div className="w-full mt-8" >
+          <h2 className="text-white text-xl font-bold mb-2">Over / Under .500</h2>
+            <p className="text-gray-400 text-sm mb-4">Win - Loss differential for all 30 teams</p>
               <BarChart
               >
                 <CartesianGrid/>
@@ -48,8 +48,7 @@ export default function TeamsPage() {
                 <Brush dataKey="name" height={25} stroke="#3B82F6" />
                 <Bar dataKey="diff" fill="#3B82F6" radius={[4, 4, 0, 0]} />
               </BarChart>
-            </p>
-          </h2>
+            
         </div>
 
 
