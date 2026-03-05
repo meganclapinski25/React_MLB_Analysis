@@ -32,7 +32,7 @@ export default function PlayersPage() {
     return (
       <div className='flex flex-col items-center p-8'>
         <h1 className='text-2xl font-bold text-white mb-2'> Players </h1>
-        <p className='text-grey-400 mb-6'> Analyical Question</p>
+        <p className='text-grey-400 mb-6'> Search a player to view their 2025 season stats</p>
 
         <form onSubmit={handleSearch} className="flex gap-3 mb-8">
         <input

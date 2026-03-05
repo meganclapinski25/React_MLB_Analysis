@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { useGetTeamsQuery } from '../features/mlb/mlbApi';
+import { useGetStandingsQuery } from '../features/mlb/mlbApi';
 import TeamSelect from '../components/shared/TeamSelect';
 export default function TeamsPage() {
 
@@ -16,7 +16,8 @@ export default function TeamsPage() {
     return (
       <div className='flex flex-col items-center p-8'>
         <h1 className='"text-2xl font-bold text-white'>Teams</h1>
-        <p className='text-grey-600 mb-6'>Analyictical Question</p>
+        <p className='text-grey-600 mb-6'>Which teams have the most wins in the AL and NL?
+        </p>
         <TeamSelect
           teams={teams}
           onChange={e => setSelectedTeam(e.target.value)}
