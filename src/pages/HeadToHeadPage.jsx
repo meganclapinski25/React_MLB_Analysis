@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { useGetStandingsQuery } from '../features/mlb/mlbApi';
+import StatCard from '../components/shared/StatCard';
 
 export default function HeadToHeadPage() {
 
@@ -55,18 +56,12 @@ export default function HeadToHeadPage() {
         </div>
         <div className="grid grid-cols-2 gap-6">
           <div className="bg-gray-800 rounded-xl p-6">
-            <h2 className="text-xl font-bold text-white mb-4">Team A</h2>
-            <div className="bg-gray-700 rounded-lg p-4">
-              <p className="text-gray-400 text-xs mb-1">Actual Wins</p>
-              <p className="text-white text-2xl font-bold">--</p>
-            </div>
+            <h2 className="text-xl font-bold text-white mb-4">{teamA?.name ?? 'Team A'}</h2>
+            <StatCard label="Actual Wins" value={teamA?.wins} />
           </div>
           <div className="bg-gray-800 rounded-xl p-6">
-            <h2 className="text-xl font-bold text-white mb-4">Team B</h2>
-            <div className="bg-gray-700 rounded-lg p-4">
-              <p className="text-gray-400 text-xs mb-1">Actual Wins</p>
-              <p className="text-white text-2xl font-bold">--</p>
-            </div>
+            <h2 className="text-xl font-bold text-white mb-4">{teamB?.name ?? 'Team B'}</h2>
+            <StatCard label="Actual Wins" value={teamB?.wins} />
           </div>
         </div>
       </div>
