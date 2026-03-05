@@ -13,13 +13,13 @@ export default function TeamsPage() {
 
   const teams = data?.records?.flatMap(record =>
     record.teamRecords.map(t=>({
-      id: t.team.id,
+      
       name: t.team.name,
-      wins: t.wins,
-      losses: t.losses,
-      league: record.league.name,
+      diff: t.wins - t.losses,
+      
+      
     }))
-  ).sort((a, b) => b.wins - a.wins) ?? [];
+  ).sort((a, b) => b.diff - a.diff) ?? [];
 
   
 
