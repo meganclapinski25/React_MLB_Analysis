@@ -1,16 +1,66 @@
-# React + Vite
+# MLB Analytics Dashboard
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A single-page React application that displays live 2025 MLB season data including standings, team performance, player stats, and head-to-head team comparisons.
 
-Currently, two official plugins are available:
+---
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Project Description
 
-## React Compiler
+This app pulls live data from the official MLB Stats API and presents it across four pages:
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+- **Standings** — All 30 teams grouped by division with win/loss records
+- **Teams** — Over/Under .500 bar chart for all teams, plus KPI cards for a selected team
+- **Players** — Search any player by name and view their 2025 season hitting stats
+- **Head to Head** — Compare two teams' win percentages side by side
 
-## Expanding the ESLint configuration
+---
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+## Tech Stack
+
+- React 19
+- Redux Toolkit + RTK Query
+- Tailwind CSS
+- Recharts
+- Vite
+
+---
+
+## Running the App
+
+### Prerequisites
+- Node.js installed on your machine
+
+### Steps
+
+1. Clone the repository:
+```bash
+git clone https://github.com/meganclapinski/React_MLB_Analysis.git
+cd React_MLB_Analysis
+```
+
+2. Install dependencies:
+```bash
+npm install
+```
+
+3. Start the development server:
+```bash
+npm run dev
+```
+
+4. Open your browser and go to:
+```
+http://localhost:5173
+```
+
+---
+
+## How I Used AI Responsibly
+
+I used AI (Claude) as a learning tool and coding assistant throughout this project. Specifically:
+
+- I used AI to help me set up RTK Query and understand how `createApi` and `fetchBaseQuery` work, since this was my first time using it
+- I used AI to debug a crash caused by trying to access `data.records` before the API had responded, which led me to learn about optional chaining (`?.`)
+- I used AI to help me understand why `flatMap` was needed instead of `map` when transforming the nested standings API response
+- I used AI to help structure my Recharts visualizations and understand which components were required vs optional
+- I used AI to identify unused imports and clean up my codebase before submission
