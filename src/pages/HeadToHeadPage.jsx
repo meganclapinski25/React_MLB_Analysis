@@ -1,14 +1,17 @@
 import { useState } from 'react';
 import { useGetStandingsQuery } from '../features/mlb/mlbApi';
 import StatCard from '../components/shared/StatCard';
+import TeamSelect from '../components/shared/TeamSelect';
 
 export default function HeadToHeadPage() {
 
   const [teamA, setTeamA] = useState(null);
   const [teamB, setTeamB] = useState(null);
   
-  const { data, isLoading } = useGetStandingsQuery(2025);
-  if (isLoading) return <p className="text-white p-8">Loading teams...</p>;
+  const { data, isLoading, isError } = useGetStandingsQuery(2025);
+  if (isLoading) return <p className="text-white p-8">Loading...</p>;
+  if (isError) return <p className="text-red-400 p-8">Something went wrong.</p>;
+
       const allTeams = data?.records?.flatMap(record =>
         record.teamRecords.map(t=>({
           id:t.team.id,
@@ -40,17 +43,11 @@ export default function HeadToHeadPage() {
         <p className="text-grey-400 mb-6">Analyitcal Question</p>
       
         <div className='flex flex-col mb-8 items-center  '>
-          <select defaultValue="" onChange={handleTeamA} className='bg-gray-800 text-white px-4 py-2 rounded-lg border border-gray-600 mb-8'>
-            <option value="" disabled>Select Team A</option>
-            {allTeams.map(t => <option key={t.id} value={t.id}>{t.name}</option>)}
-          </select>
+          <TeamSelect teams={allTeams} onChange={handleTeamA} placeholder="Select Team A" />
 
           <span className='pb-8'>vs</span>
 
-          <select defaultValue="" onChange={handleTeamB} className='bg-gray-800 text-white px-4 py-2 rounded-lg border border-gray-600 mb-8'>
-            <option value="" disabled>Select Team B</option>
-            {allTeams.map(t => <option key={t.id} value={t.id}>{t.name}</option>)}
-          </select>
+          <TeamSelect teams={allTeams} onChange={handleTeamB} placeholder="Select Team B" />
 
 
         </div>

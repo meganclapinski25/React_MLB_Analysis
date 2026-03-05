@@ -1,5 +1,5 @@
 import { useState } from 'react';
-
+import PlayerCard from '../components/shared/PlayerCard';
 import { useSearchPlayersQuery, useGetPlayerStatsQuery } from '../features/mlb/mlbApi';
 
 
@@ -19,9 +19,10 @@ export default function PlayersPage() {
     });
 
     const {data: statsData, isLoading: statsLoading} = useGetPlayerStatsQuery(
-      {playerid: selectedPlayerId},
+      {playerId: selectedPlayerId},
       {skip: !selectedPlayerId}
     );
+    if (searchLoading) return <p className="text-white p-8">Loading...</p>;
 
     const players = searchData?.people ?? [];
 
@@ -46,17 +47,16 @@ export default function PlayersPage() {
         </button>
       </form>
 
-      {searchLoading && <p className='"text-white'> Searching</p>}
+      {searchLoading && <p className='text-white'> Searching</p>}
       {players.length > 0 && (
         <ul className="w-full max-w-md">
           {players.map(p => (
-            <li
-            key={p.id}
-            onClick={() => setSelectedPlayerId(p.id)}
-            className={`px-4 py-3 border-b border-gray-700 text-white cursor-pointer hover:bg-gray-700 ${selectedPlayerId === p.id ? 'bg-gray-700' : ''}`}
-          >
-            {p.fullName} — {p.primaryPosition?.abbreviation}
-          </li>
+              <PlayerCard
+              key={p.id}
+              player={p}
+              isSelected={selectedPlayerId === p.id}
+              onClick={() => setSelectedPlayerId(p.id)}
+            />
           ))}
         </ul>
         )}

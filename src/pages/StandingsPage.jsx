@@ -6,8 +6,8 @@ export default function StandingsPage(){
 
   
   const { data, isLoading, isError } = useGetStandingsQuery(2025);
-      if (isLoading) return <p className="text-white p-8">Loading standings...</p>;
-      if (isError) return <p className="text-red-400 p-8">Failed to load standings.</p>;
+  if (isLoading) return <p className="text-white p-8">Loading...</p>;
+  if (isError) return <p className="text-red-400 p-8">Something went wrong.</p>;
   
       const teams = data.records.flatMap(record =>
         record.teamRecords.map(t=>({
