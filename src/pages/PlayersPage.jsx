@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import PlayerCard from '../components/shared/PlayerCard';
+import StatCard from '../components/shared/StatCard';
 import { useSearchPlayersQuery, useGetPlayerStatsQuery } from '../features/mlb/mlbApi';
 
 
@@ -25,6 +26,7 @@ export default function PlayersPage() {
     if (searchLoading) return <p className="text-white p-8">Loading...</p>;
 
     const players = searchData?.people ?? [];
+    const stats = statsData?.stats?.[0]?.splits?.[0]?.stat ?? null;
 
     return (
       <div className='flex flex-col items-center p-8'>
@@ -62,9 +64,14 @@ export default function PlayersPage() {
         )}
         {statsLoading && <p className="text-white mt-4">Loading stats...</p>}
 
-        {statsData && (
-          <div className="mt-6 w-full max-w-md bg-gray-800 rounded-xl p-6 text-white">
-            <pre className="text-sm overflow-auto">{JSON.stringify(statsData, null, 2)}</pre>
+        {stats && (
+          <div className="grid grid-cols-3 gap-4 w-full max-w-lg mt-6">
+            <StatCard label="AVG" value={stats.avg} />
+            <StatCard label="OBP" value={stats.obp} />
+            <StatCard label="SLG" value={stats.slg} />
+            <StatCard label="HR" value={stats.homeRuns} />
+            <StatCard label="RBI" value={stats.rbi} />
+            <StatCard label="OPS" value={stats.ops} />
           </div>
         )}
       </div>
