@@ -34,7 +34,7 @@ export default function TeamsPage() {
         <TeamSelect
           teams={teams}
           onChange={e => {
-            const team = teams.find(t => t.name === parseInt(e.target.value));
+            const team = teams.find(t => t.id === parseInt(e.target.value));
             setSelectedTeam(team);
           }}
           placeholder="Select a team..."
