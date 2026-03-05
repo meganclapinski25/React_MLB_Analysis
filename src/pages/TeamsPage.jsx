@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { useGetStandingsQuery } from '../features/mlb/mlbApi';
 import TeamSelect from '../components/shared/TeamSelect';
+import { BarChart, Bar, Brush, ReferenceLine, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from 'recharts';
 export default function TeamsPage() {
 
   const [selectedTeam, setSelectedTeam] = useState(null);
@@ -33,7 +34,23 @@ export default function TeamsPage() {
           onChange={e => setSelectedTeam(e.target.value)}
           placeholder="Select a team..."
         />
-
+        <div>
+          <h2>
+            <p>
+              <BarChart
+              >
+                <CartesianGrid/>
+                <XAxis/>
+                <YAxis/>
+                <Tooltip
+                />
+                <ReferenceLine y={0} stroke="#fff" strokeDasharray="3 3" />
+                <Brush dataKey="name" height={25} stroke="#3B82F6" />
+                <Bar dataKey="diff" fill="#3B82F6" radius={[4, 4, 0, 0]} />
+              </BarChart>
+            </p>
+          </h2>
+        </div>
 
 
 
