@@ -32,7 +32,10 @@ export default function TeamsPage() {
         </p>
         <TeamSelect
           teams={teams}
-          onChange={e => setSelectedTeam(e.target.value)}
+          onChange={e => {
+            const team = teams.find(t => t.name === e.target.value);
+            setSelectedTeam(team);
+          }}
           placeholder="Select a team..."
         />
         <div className="w-full mt-8" >
