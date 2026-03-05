@@ -7,14 +7,14 @@ export default function HeadToHeadPage() {
   const [teamB, setTeamB] = useState(null);
   
   const { data, isLoading } = useGetStandingsQuery(2025);
- 
-      const allTeams = data.records.flatMap(record =>
+  if (isLoading) return <p className="text-white p-8">Loading teams...</p>;
+      const allTeams = data?.records?.flatMap(record =>
         record.teamRecords.map(t=>({
           id:t.team.id,
           name: t.team.name,
           wins: t.wins,
         }))
-      );
+      ) ?? [];
      
     function handleTeamA(e){
       const selectedId = parseInt(e.target.value);
@@ -29,7 +29,7 @@ export default function HeadToHeadPage() {
     }
 
 
-    if (isLoading) return <p className="text-white p-8">Loading teams...</p>;
+    
 
 
 
