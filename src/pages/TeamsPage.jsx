@@ -17,11 +17,12 @@ export default function TeamsPage() {
       
       name: t.team.name,
       diff: t.wins - t.losses,
-      
+      wins: t.wins,
+      losses: t.losses,
+      winPct: (t.wins / (t.wins + t.losses)).toFixed(3),
       
     }))
-  ).sort((a, b) => b.diff - a.diff) ?? [];
-
+  )??[];
   
 
     return (
@@ -38,14 +39,20 @@ export default function TeamsPage() {
           <h2 className="text-white text-xl font-bold mb-2">Over / Under .500</h2>
             <p className="text-gray-400 text-sm mb-4">Win - Loss differential for all 30 teams</p>
               <BarChart
+                style={{ width: '100%', maxWidth: '1200px', aspectRatio: 1.618 }}
+                responsive
+                data={teams}
+                margin={{ top: 5, right: 0, left: 0, bottom: 5 }}
               >
-                <CartesianGrid/>
-                <XAxis/>
-                <YAxis/>
+                <CartesianGrid strokeDasharray="3 3" stroke="#374151"/>
+                <XAxis dataKey="name" stroke="#9CA3AF" tick={false} />
+                <YAxis stroke="#9CA3AF"/>
                 <Tooltip
+                 contentStyle={{ backgroundColor: '#1F2937', border: 'none', color: '#fff' }}
+                 formatter={(value) => [`${value > 0 ? '+' : ''}${value}`, 'Win Diff']}
                 />
                 <ReferenceLine y={0} stroke="#fff" strokeDasharray="3 3" />
-                <Brush dataKey="name" height={25} stroke="#3B82F6" />
+                
                 <Bar dataKey="diff" fill="#3B82F6" radius={[4, 4, 0, 0]} />
               </BarChart>
             
