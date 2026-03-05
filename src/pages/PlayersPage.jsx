@@ -9,6 +9,7 @@ export default function PlayersPage() {
     const [query, setQuery] = useState('');
     const [submittedQuery, setSubmittedQuery] = useState('');
     const [selectedPlayerId, setSelectedPlayerId] = useState(null);
+    const [selectedPlayer, setSelectedPlayer] = useState(null);
 
     function handleSearch(e){
       e.preventDefault();
@@ -49,19 +50,41 @@ export default function PlayersPage() {
         </button>
       </form>
 
-      {searchLoading && <p className='text-white'> Searching</p>}
-      {players.length > 0 && (
+      {!selectedPlayer && searchLoading && <p className='text-white'> Searching</p>}
+
+      {!selectedPlayer && players.length > 0 && (
         <ul className="w-full max-w-md">
           {players.map(p => (
               <PlayerCard
               key={p.id}
               player={p}
               isSelected={selectedPlayerId === p.id}
-              onClick={() => setSelectedPlayerId(p.id)}
+              onClick={() => {
+                setSelectedPlayerId(p.id);
+                setSelectedPlayer(p);
+              }}
             />
           ))}
         </ul>
         )}
+
+        {selectedPlayer && (
+          <div className = "w-full max-w-lg mt-4">
+
+            <div className="flex justify-between items-center mb-6">
+              <h2 className="text-white text-2xl font-bold">{selectedPlayer.fullName}</h2>
+                  <button
+                    onClick={() => { setSelectedPlayer(null); setSelectedPlayerId(null); }}
+                    className="text-gray-400 hover:text-white text-sm"
+                    >
+                   Clear
+                  </button>
+            </div>
+
+
+          
+        
+
         {statsLoading && <p className="text-white mt-4">Loading stats...</p>}
 
         {stats && (
@@ -74,6 +97,8 @@ export default function PlayersPage() {
             <StatCard label="OPS" value={stats.ops} />
           </div>
         )}
+      </div>
+      )}
       </div>
     )
   }
