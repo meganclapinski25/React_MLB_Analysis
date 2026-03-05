@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { useGetStandingsQuery } from '../features/mlb/mlbApi';
+import StatCard from '../components/shared/StatCard';
 import TeamSelect from '../components/shared/TeamSelect';
 import { BarChart, Bar, Brush, ReferenceLine, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from 'recharts';
 export default function TeamsPage() {
@@ -38,6 +39,17 @@ export default function TeamsPage() {
           }}
           placeholder="Select a team..."
         />
+        {selectedTeam && (
+          <div className=" flex flex-col items-center w-full mt-8 ">
+            <h2 className="text-white text-xl font-bold mb-4">{selectedTeam.name}</h2>
+            <div className="grid grid-cols-2 gap-4 max-w-sm">
+              <StatCard label="Wins" value={selectedTeam.wins} />
+              <StatCard label="Losses" value={selectedTeam.losses} />
+              <StatCard label="Win Diff" value={`${selectedTeam.diff > 0 ? '+' : ''}${selectedTeam.diff}`} />
+              <StatCard label="Win %" value={selectedTeam.winPct} />
+            </div>
+          </div>
+        )}
         <div className="w-full mt-8" >
           <h2 className="text-white text-xl font-bold mb-2">Over / Under .500</h2>
             <p className="text-gray-400 text-sm mb-4">Win - Loss differential for all 30 teams</p>
