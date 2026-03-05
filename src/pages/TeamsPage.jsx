@@ -9,7 +9,17 @@ export default function TeamsPage() {
   
   if (isLoading) return <p className="text-white p-8">Loading...</p>;
   if (isError) return <p className="text-red-400 p-8">Something went wrong.</p>;
-  const teams = data?.teams ?? [];
+
+
+  const teams = data?.record?.flatMap(record =>
+    record.teamRecords.map(t=>({
+      id: t.team.id,
+      name: t.team.name,
+      wins: t.wins,
+      losses: t.losses,
+      league: record.league.name,
+    }))
+  ).sort((a, b) => b.wins - a.wins) ?? [];
 
   
 
