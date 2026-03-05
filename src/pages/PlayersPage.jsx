@@ -60,6 +60,13 @@ export default function PlayersPage() {
           ))}
         </ul>
         )}
+        {statsLoading && <p className="text-white mt-4">Loading stats...</p>}
+
+        {statsData && (
+          <div className="mt-6 w-full max-w-md bg-gray-800 rounded-xl p-6 text-white">
+            <pre className="text-sm overflow-auto">{JSON.stringify(statsData, null, 2)}</pre>
+          </div>
+        )}
       </div>
     )
   }
