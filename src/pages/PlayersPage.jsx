@@ -74,7 +74,8 @@ export default function PlayersPage() {
             <div className="flex justify-between items-center mb-6">
               <h2 className="text-white text-2xl font-bold">{selectedPlayer.fullName}</h2>
                   <button
-                    onClick={() => { setSelectedPlayer(null); setSelectedPlayerId(null); }}
+                    onClick={() => { setSelectedPlayer(null); setSelectedPlayerId(null);setSubmittedQuery('');
+                      setQuery(''); }}
                     className="text-gray-400 hover:text-white text-sm"
                     >
                    Clear
