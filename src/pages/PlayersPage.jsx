@@ -1,6 +1,6 @@
 import { useState } from 'react';
 
-import { useSearchPlayersQuery } from '../features/mlb/mlbApi';
+import { useSearchPlayersQuery, useGetPlayerStatsQuery } from '../features/mlb/mlbApi';
 
 
 
@@ -17,6 +17,11 @@ export default function PlayersPage() {
     const { data:searchData, isLoading:searchLoading } = useSearchPlayersQuery(submittedQuery, {
       skip: !submittedQuery,
     });
+
+    const {data: statsData, isLoading: statsLoading} = useGetPlayerStatsQuery(
+      {playerid: selectedPlayerId},
+      {skip: !selectedPlayerId}
+    );
 
     const players = searchData?.people ?? [];
 
