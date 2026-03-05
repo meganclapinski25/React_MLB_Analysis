@@ -5,13 +5,13 @@ export default function TeamsPage() {
 
   const [selectedTeam, setSelectedTeam] = useState(null);
 
-  const { data, isLoading, isError} = useGetTeamsQuery(2025);
+  const { data, isLoading, isError} = useGetStandingsQuery(2025);
   
   if (isLoading) return <p className="text-white p-8">Loading...</p>;
   if (isError) return <p className="text-red-400 p-8">Something went wrong.</p>;
 
 
-  const teams = data?.record?.flatMap(record =>
+  const teams = data?.records?.flatMap(record =>
     record.teamRecords.map(t=>({
       id: t.team.id,
       name: t.team.name,
@@ -25,7 +25,7 @@ export default function TeamsPage() {
 
     return (
       <div className='flex flex-col items-center p-8'>
-        <h1 className='"text-2xl font-bold text-white'>Teams</h1>
+        <h1 className="text-2xl font-bold text-white">Teams</h1>
         <p className='text-grey-600 mb-6'>Which teams have the most wins in the AL and NL?
         </p>
         <TeamSelect
