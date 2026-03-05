@@ -21,7 +21,15 @@ export default function StandingsPage(){
        
      
   
-      console.log(divisions[0].division);
+      // console.log(divisions[0].division);
+      const divisionNames = {
+        200: 'AL West ',
+        201: 'AL East',
+        202: 'AL Central',
+        203: 'NL West',
+        204: 'NL East',
+        205: 'NL Central',
+      };
 
 
 
@@ -31,7 +39,7 @@ export default function StandingsPage(){
           <div className="grid grid-cols-2 gap-8">
             {divisions.map(div => (
               <div key={div.division.id}>
-                <h2 className="text-blue-400 font-bold text-lg mb-3">{div.division.name}</h2>
+                <h2 className="text-blue-400 font-bold text-lg mb-3">{divisionNames[div.division.id]}</h2>
                 {div.teams.map(team => (
                   <div key={team.name} className="flex justify-between text-white py-2 px-4 border-b border-gray-700">
                     <span>{team.name}</span>

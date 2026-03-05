@@ -34,11 +34,13 @@ export default function TeamsPage() {
         <TeamSelect
           teams={teams}
           onChange={e => {
-            const team = teams.find(t => t.name === e.target.value);
+            const team = teams.find(t => t.name === parseInt(e.target.value));
             setSelectedTeam(team);
           }}
           placeholder="Select a team..."
         />
+
+        
         {selectedTeam && (
           <div className=" flex flex-col items-center w-full mt-8 ">
             <h2 className="text-white text-xl font-bold mb-4">{selectedTeam.name}</h2>
