@@ -10,20 +10,6 @@ export const mlbApi = createApi({
         `/standings?leagueId=103,104&season=${season}&standingsTypes=regularSeason`,
     }),
 
-    getTeams: builder.query({
-      query: (season = 2025) => `/teams?sportId=1&season=${season}`,
-    }),
-
-    getTeamStats: builder.query({
-      query: ({ teamId, group = 'hitting', season = 2025 }) =>
-        `/teams/${teamId}/stats?stats=season&group=${group}&season=${season}`,
-    }),
-
-    getSchedule: builder.query({
-      query: ({ teamId, season = 2025 }) =>
-        `/schedule?teamId=${teamId}&season=${season}&gameType=R&startDate=${season}-01-01&endDate=${season}-12-31`,
-    }),
-
     searchPlayers: builder.query({
       query: (name) => `/people/search?names=${name}&sportId=1`,
     }),
@@ -38,9 +24,6 @@ export const mlbApi = createApi({
 
 export const {
   useGetStandingsQuery,
-  useGetTeamsQuery,
-  useGetTeamStatsQuery,
-  useGetScheduleQuery,
   useSearchPlayersQuery,
   useGetPlayerStatsQuery,
 } = mlbApi;
